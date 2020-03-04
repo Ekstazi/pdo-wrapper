@@ -324,7 +324,7 @@ class PDOStatement extends \PDOStatement {
      * @return bool
      * @throws \Compeek\PDOWrapper\NotConnectedException
      */
-    public function execute(array $input_parameters = null) {
+    public function execute($input_parameters = null) {
         $this->requireConnection();
 
         $executedOn = microtime(true);
@@ -389,11 +389,11 @@ class PDOStatement extends \PDOStatement {
     }
 
     /**
-     * @param int $mode
+	 * {@inheritDoc}
      * @return bool
      * @throws \Compeek\PDOWrapper\NotConnectedException
      */
-    public function setFetchMode($mode) {
+    public function setFetchMode($mode, $arg2 = null, $arg3 = null) {
         $this->requireConnection();
 
         $args = func_get_args();
@@ -427,7 +427,7 @@ class PDOStatement extends \PDOStatement {
      * @return array|false
      * @throws \Compeek\PDOWrapper\NotConnectedException
      */
-    public function fetchAll($fetch_style = null, $fetch_argument = null, array $ctor_args = array()) {
+    public function fetchAll($fetch_style = null, $fetch_argument = null, $ctor_args = null) {
         $this->requireConnection();
 
         return call_user_func_array(array($this->pdoStatement, 'fetchAll'), func_get_args());
@@ -450,7 +450,7 @@ class PDOStatement extends \PDOStatement {
      * @return object|false
      * @throws \Compeek\PDOWrapper\NotConnectedException
      */
-    public function fetchObject($class_name = "stdClass", array $ctor_args = null) {
+    public function fetchObject($class_name = "stdClass", $ctor_args = null) {
         $this->requireConnection();
 
         return call_user_func_array(array($this->pdoStatement, 'fetchObject'), func_get_args());

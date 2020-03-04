@@ -448,7 +448,7 @@ class PDO extends \PDO {
      * @return \Compeek\PDOWrapper\PDOStatement|false
      * @throws \Compeek\PDOWrapper\NotConnectedException
      */
-    public function prepare($statement, array $driver_options = array()) {
+    public function prepare($statement, $driver_options = array()) {
         $this->requireConnection();
 
         $args = func_get_args();
@@ -467,7 +467,7 @@ class PDO extends \PDO {
     }
 
     /**
-     * @param string $statement
+     * @inheritDoc
      * @return \Compeek\PDOWrapper\PDOStatement|false
      * @throws \Compeek\PDOWrapper\NotConnectedException
      */
